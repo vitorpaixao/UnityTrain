@@ -11,7 +11,7 @@ namespace BezierSolution
 		public abstract bool MovingForward { get; }
 		public abstract float NormalizedT { get; set; }
 
-		public abstract void Execute( float deltaTime );
+		public abstract void Execute( float deltaTime);
 
 		public static readonly ExtraDataLerpFunction extraDataLerpAsQuaternionFunction = InterpolateExtraDataAsQuaternion;
 

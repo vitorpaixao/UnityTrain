@@ -48,7 +48,7 @@ namespace BezierSolution.Extras
 		protected override void Simulate( float deltaTime )
 		{
 			for( int i = 0; i < walkers.Length; i++ )
-				( (BezierWalkerLocomotion) walkers[i] ).walker.Execute( deltaTime );
+				( (BezierWalkerLocomotion) walkers[i] ).walker.Execute( deltaTime);
 
 			base.Simulate( deltaTime );
 		}

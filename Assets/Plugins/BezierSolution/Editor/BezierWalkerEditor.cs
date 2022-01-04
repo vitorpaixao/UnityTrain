@@ -114,7 +114,7 @@ namespace BezierSolution.Extras
 		protected virtual void Simulate( float deltaTime )
 		{
 			for( int i = 0; i < walkers.Length; i++ )
-				( (BezierWalker) walkers[i] ).Execute( deltaTime );
+				( (BezierWalker) walkers[i] ).Execute( deltaTime);
 		}
 	}
 }

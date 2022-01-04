@@ -50,10 +50,10 @@ namespace BezierSolution
 
 		private void LateUpdate()
 		{
-			Execute( Time.deltaTime );
+			Execute( Time.deltaTime);
 		}
 
-		public override void Execute( float deltaTime )
+		public override void Execute( float deltaTime)
 		{
 			BezierSpline spline = Spline;
 			float t = highQuality ? spline.evenlySpacedPoints.GetPercentageAtNormalizedT( NormalizedT ) : NormalizedT;

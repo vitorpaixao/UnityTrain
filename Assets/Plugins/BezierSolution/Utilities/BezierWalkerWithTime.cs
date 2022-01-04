@@ -7,8 +7,8 @@ namespace BezierSolution
 	public class BezierWalkerWithTime : BezierWalker
 	{
 		public BezierSpline spline;
-
 		public BezierSpline[] splineList;
+		public int splineSelected = 0;
 		public TravelMode travelMode;
 
 		public float travelTime = 5f;
@@ -38,32 +38,41 @@ namespace BezierSolution
 		private bool onPathCompletedCalledAt1 = false;
 		private bool onPathCompletedCalledAt0 = false;
 
-        private void Start()
-        {
-			spline = splineList[0];
-		}
-
-        private void Update()
+		private void Update()
 		{
-			Execute( Time.deltaTime);
-
 			
-			if (Input.GetKeyDown(KeyCode.A))
+
+			if (Input.GetKeyDown("a"))
             {
-				spline = splineList[0];
+				splineSelected = 0;
+				Debug.Log("Press A" + splineSelected + " \n");
 			}
 
-			if (Input.GetKeyDown(KeyCode.S))
+			if (Input.GetKeyDown("s"))
 			{
-				spline = splineList[1];
+				splineSelected = 1;
+				Debug.Log("Press S" + splineSelected + " \n");
 			}
+
+			Debug.Log("Spline: " + spline + " \n");
+
+			float _normalizedT = highQuality ? spline.evenlySpacedPoints.GetNormalizedTAtPercentage(m_normalizedT) : m_normalizedT;
+
+			if (_normalizedT < 1f)
+            {
+				splineSelected = 1;
+			}
+
+			Execute(Time.deltaTime);
+
 		}
 
 		public override void Execute( float deltaTime)
 		{
 			float _normalizedT = highQuality ? spline.evenlySpacedPoints.GetNormalizedTAtPercentage( m_normalizedT ) : m_normalizedT;
+			Debug.Log("_normalizedT" + _normalizedT + " \n");
 
-			transform.position = Vector3.Lerp( transform.position, spline.GetPoint( _normalizedT ), movementLerpModifier * deltaTime );
+			transform.position = Vector3.Lerp( transform.position, splineList[splineSelected].GetPoint( _normalizedT ), movementLerpModifier * deltaTime );
 
 			if( lookAt == LookAtMode.Forward )
 			{
